@@ -1,0 +1,29 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_AOC_PARTICIPANT alias Participant
+use etag
+
+{
+
+  use association _Days { create; with draft; }
+
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+}
+
+define behavior for ZC_AOC_DAY alias Day
+{
+  use update;
+  use delete;
+
+  use association _Participant { with draft; }
+}

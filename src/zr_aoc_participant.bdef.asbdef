@@ -1,0 +1,97 @@
+managed implementation in class ZBP_R_AOC_PARTICIPANT unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZR_AOC_PARTICIPANT alias Participant
+persistent table zaoc_participant
+draft table ZAOC_PARTICIPAND
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+  field ( readonly )
+   ParticipantUUID,
+   CreatedAt,
+   CreatedBy,
+   LastChangedAt,
+   LastChangedBy,
+   LocalLastChangedAt;
+
+  field ( numbering : managed )
+   ParticipantUUID;
+
+  association _Days { create; with draft; }
+
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZAOC_PARTICIPANT
+  {
+    ParticipantUUID = participant_uuid;
+    Fullyear = fullyear;
+    ProblemsSolved = problems_solved;
+    AuthCookie = auth_cookie;
+    GenPackage = gen_package;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
+
+define behavior for ZR_AOC_Day alias Day
+persistent table zaoc_day
+draft table zaoc_day_d
+etag master LocalLastChangedAt
+lock dependent by _Participant
+authorization dependent by _Participant
+{
+  field ( readonly )
+  DayUUID,
+  ParticipantUUID,
+  CreatedBy,
+  CreatedAt,
+  LastChangedBy,
+  LastChangedAt,
+  LocalLastChangedAt;
+
+  field ( numbering : managed )
+  DayUUID;
+
+  field ( mandatory )
+  DayNumber;
+
+  update;
+  delete;
+
+  association _Participant { with draft; }
+
+  determination createSolverClass on save { create; }
+  determination downloadPuzzleInput on save { create; }
+
+  mapping for zaoc_day
+  {
+    DayUUID = day_uuid;
+    ParticipantUUID = participant_uuid;
+    DayNumber = day_number;
+    Part1Solved = part1_solved;
+    Part2Solved = part2_solved;
+    SolverClassName = solver_class_name;
+    TextID = text_id;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}

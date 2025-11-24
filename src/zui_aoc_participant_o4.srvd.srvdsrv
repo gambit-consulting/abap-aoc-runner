@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for ZC_AOC_PARTICIPANT'
+define service ZUI_AOC_PARTICIPANT_O4 {
+  expose ZC_AOC_PARTICIPANT as Participant;
+  expose ZC_AOC_DAY         as Day;
+}

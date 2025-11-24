@@ -1,0 +1,66 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Day', 
+    typeNamePlural: 'Days'
+  }
+}
+annotate view ZC_AOC_DAY with
+{
+  @UI.facet: [ {
+    id: 'idIdentification', 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Day', 
+    position: 10 
+  } ]
+  @UI.hidden: true
+  DayUUID;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #MEDIUM, 
+    label: 'Day'
+  } ]
+  @UI.identification: [ {
+    position: 20 , 
+    label: 'Day'
+  } ]
+  DayNumber;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #MEDIUM, 
+    label: 'Part 1 Solved'
+  } ]
+  @UI.identification: [ {
+    position: 30 , 
+    label: 'Part 1 Solved'
+  } ]
+  Part1Solved;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #MEDIUM, 
+    label: 'Part 2 Solved'
+  } ]
+  @UI.identification: [ {
+    position: 40 , 
+    label: 'Part 2 Solved'
+  } ]
+  Part2Solved;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #MEDIUM, 
+    label: 'Class'
+  } ]
+  @UI.identification: [ {
+    position: 40 , 
+    label: 'Class'
+  } ]
+  SolverClassName;
+  
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+}
