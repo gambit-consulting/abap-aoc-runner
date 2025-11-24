@@ -24,8 +24,8 @@ I am not an ABAP pro so my framework might need some tweaking. I am very open to
 
 ## To-Dos
 
-[ ] Other users should not see everones auth cookies (until then please don't abuse others auth cookies 😵)
-[ ] Update counter of "Problems solved" in Participants entity when user marks individual Days as solved
-[ ] Value help for YEARS (custom entity that displays numbers from 2015 to current year)
-[ ] Value help for DAYS (custom or even remote entity that displays numbers of days for each year)
-[ ] Add more screenshots to readme so it has a little more soul.
+- [ ] Other users should not see everones auth cookies (until then please don't abuse others auth cookies 😵)
+- [ ] Update counter of "Problems solved" in Participants entity when user marks individual Days as solved
+- [ ] Value help for YEARS (custom entity that displays numbers from 2015 to current year)
+- [ ] Value help for DAYS (custom or even remote entity that displays numbers of days for each year)
+- [ ] Add more screenshots to readme so it has a little more soul.
