@@ -11,10 +11,8 @@ A framework to solve [Advent of Code](https://adventofcode.com/) problems using 
 
 ## Installation
 
-- Install this tool in your S/4 system using [abapgit](https://docs.abapgit.org/) in a local package (e.g. `$ADVENTOFCODE`).
-- In `/n/IWFND/V4_ADMIN` publish the service group `ZUI_AOC_RUNNER`
-
-![image](img/v4_admin.png)
+1. Install this tool in your S/4 system using [abapgit](https://docs.abapgit.org/) in a local package (e.g. `$ADVENTOFCODE`).
+1. In `/n/IWFND/V4_ADMIN` publish the service group `ZUI_AOC_RUNNER`<br><br>![image](img/v4_admin.png)
 
 ## Usage
 
@@ -28,10 +26,10 @@ A framework to solve [Advent of Code](https://adventofcode.com/) problems using 
 ### Solving
 1. Open the newly generated solver class in Eclipse
 1. Replace the dummy implementation of the solver methods with your real implementation. The puzzle input (a `string_table`) is passed to both methods.
-Here is a sample implementation of 2025/01 part 1: ![image](img/sample_solution.png)
+Here is a sample implementation of 2025/01 part 1:<br><br>![image](img/sample_solution.png)
 
 1. The solver class contains a local test class that can be filled with the sample input from the AoC page. It can be executed by <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F10</kbd> or right-clicking your solver class and selecting `Run As > ABAP Unit Test`.
-Here is a sample test implementation of 2025/01: ![image](img/sample_test.png)
+Here is a sample test implementation of 2025/01:<br><br>![image](img/sample_test.png)
 1. The solver class is runnable via <kbd>F9</kbd> and executes `solve_part1` and `solve_part2` and prints the result to the Eclipse console. This result can be entered on the AoC webpage to gain stars.
 
 ## Caution
