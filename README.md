@@ -20,7 +20,7 @@ A framework to solve [Advent of Code](https://adventofcode.com/) problems using 
 
 ### Preparation
 1. Extract your session cookie: ![image](img/cookie.png)
-You only need the highlighted hex string after `session=` and before `;`
+<br>You only need the highlighted hex string after `session=` and before `;`
 1. Create your own local package where the puzzle classes will be generated. Since each year will have up to 25 ABAP classes it might make sense to create a local package for each user and year (e.g. `$AOC2025_MARC`). 
 1. Open the `Participant` entity preview in the service binding `ZUI_AOC_PARTICIPANT_O4`. Create a new entry with the year number you want to solve (e.g. `2025`), the package created for your solutions (e.g. `$AOC2025_MARC`, **not** `$ADVENTOFCODE`) and your auth cookie for the AoC page.
 1. On the detail page of this new row you can now add the days you want to solve (maybe create them one at a time). In `Edit` mode create a new `Day` entry and pass the day number (1-25). When pressing `Save` the *ABAP AoC Runner* automatically downloads your puzzle input and creates a class `ZCL_AOC_[SAPUSER]_[YEAR]_[DAY]` (e.g. `ZCL_AOC_MARC_2025_01`).
