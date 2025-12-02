@@ -2,21 +2,29 @@
 
 A framework to solve [Advent of Code](https://adventofcode.com/) problems using ABAP.
 
+## Prerequisites
+
+- This framework uses RAP so I guess you need an S/4 system. I developed it in our playground system (S4HANA ON PREMISE 2023, SAP_BASIS 758)
+- [abapgit](https://docs.abapgit.org/)
+- System must be able to make HTTP calls to the outer world (to fetch data from `https://adventofcode.com/`)
+
 ## Installation
 
-Install this tool in your S/4 system using [abapgit](https://docs.abapgit.org/) in a local package (e.g. `$ADVENTOFCODE`).
+- Install this tool in your S/4 system using [abapgit](https://docs.abapgit.org/) in a local package (e.g. `$ADVENTOFCODE`).
+- In `/n/IWFND/V4_ADMIN` publish the service group `ZUI_AOC_RUNNER`
 
 ## Usage
 
-Each year will have up to 25 ABAP classes. So it might make sense to create a local package for each user and year (e.g. `$AOC2025_MARC`). 
+### Preparation
+1. Create your own local package where the puzzle classes will be generated. Since each year will have up to 25 ABAP classes it might make sense to create a local package for each user and year (e.g. `$AOC2025_MARC`). 
+1. Open the `Participant` entity preview in the service binding `ZUI_AOC_PARTICIPANT_O4`. Create a new entry with the year number you want to solve (e.g. `2025`), the package created for your solutions (e.g. `$AOC2025_MARC`, **not** `$ADVENTOFCODE`) and your auth cookie for the AoC page.
+1. On the detail page of this new row you can now add the days you want to solve (maybe create them one at a time). In `Edit` mode create a new `Day` entry and pass the day number (1-25). When pressing `Save` the *ABAP AoC Runner* automatically downloads your puzzle input and creates a class `ZCL_AOC_[SAPUSER]_[YEAR]_[DAY]` (e.g. `ZCL_AOC_MARC_2025_01`).
 
-Open the `Participant` entity preview in the service binding `ZUI_AOC_PARTICIPANT_O4`. Create a new entry with the year number you want to solve (e.g. `2025`), the package created for your solutions (e.g. `$AOC2025_MARC`, **not** `$ADVENTOFCODE`) and your auth cookie for the AoC page.
-
-On the detail page of this new row you can now add the days you want to solve. In `Edit` mode create a new `Day` entry and pass the day number (1-25). When pressing `Save` the *ABAP AoC Runner* automatically downloads your puzzle input and creates a class `ZCL_AOC_[SAPUSER]_[YEAR]_[DAY]` (e.g. `ZCL_AOC_MARC_2025_01`). This class is runnable via <kbd>F9</kbd> and executes `solve_part1` and `solve_part2` and prints it to the Eclipse console.
-
-The only thing you need to do is replace the dummy implementation of the solver methods with your real implementation. The puzzle input (a `string_table`) is passed to both methods.
-
-The solver class also contains a local test class that can be filled with the sample input from the AoC page. It can be executed by <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F10</kbd> or right-clicking your solver class and selecting `Run As > ABAP Unit Test`.
+### Solving
+1. Open the newly generated solver class in Eclipse
+1. Replace the dummy implementation of the solver methods with your real implementation. The puzzle input (a `string_table`) is passed to both methods.
+1. The solver class contains a local test class that can be filled with the sample input from the AoC page. It can be executed by <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F10</kbd> or right-clicking your solver class and selecting `Run As > ABAP Unit Test`.
+1. The solver class is runnable via <kbd>F9</kbd> and executes `solve_part1` and `solve_part2` and prints it to the Eclipse console.
 
 ## Caution
 
@@ -26,4 +34,4 @@ I am not an ABAP pro so my framework might need some tweaking. I am very open to
 
 - [ ] Other users should not see everones auth cookies (until then please don't abuse others auth cookies 😵)
 - [ ] Update counter of "Problems solved" in Participants entity when user marks individual Days as solved
-- [ ] Add more screenshots to readme so it has a little more soul.
+- [ ] Add more screenshots to readme so it looks less dead.
