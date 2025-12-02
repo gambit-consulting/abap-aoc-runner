@@ -25,8 +25,7 @@ FUNCTION zaoc_generate_class.
   test_class->definition->set_duration( xco_abap_unit=>duration->short ).
   test_class->definition->set_risk_level( xco_abap_unit=>risk_level->harmless ).
 
-  test_class->definition->section-private->add_data( 'solver' )->set_type(
-                                                                  xco_abap=>class( im_class_name ) ).
+  test_class->definition->section-private->add_data( 'solver' )->set_type( xco_abap=>class( im_class_name ) ).
 
   test_class->definition->section-private->add_method( 'setup' ).
   test_class->definition->section-private->add_method( 'teardown' ).
@@ -38,12 +37,14 @@ FUNCTION zaoc_generate_class.
 
   test_class->implementation->add_method( 'teardown' )->set_source( VALUE #( (  |free me->solver. | ) ) ).
 
-  FINAL(test_source) = VALUE rswsourcet( ( |final(test_input) = value string_table( ( `123` ) ( `456` ) ).| )
-                                         ( |final(result) = me->solver->solve_part1( test_input ).| )
-                                         ( |cl_abap_unit_assert=>assert_equals( act = result exp = 0 ).| ) ).
-
-  test_class->implementation->add_method( 'test_solve_part1' )->set_source( test_source ).
-  test_class->implementation->add_method( 'test_solve_part2' )->set_source( test_source ).
+  test_class->implementation->add_method( 'test_solve_part1' )->set_source(
+      VALUE rswsourcet( ( |final(test_input) = value string_table( ( `123` ) ( `456` ) ).| )
+                        ( |final(result) = me->solver->solve_part1( test_input ).| )
+                        ( |cl_abap_unit_assert=>assert_equals( act = result exp = 0 ).| ) ) ).
+  test_class->implementation->add_method( 'test_solve_part2' )->set_source(
+      VALUE rswsourcet( ( |final(test_input) = value string_table( ( `123` ) ( `456` ) ).| )
+                        ( |final(result) = me->solver->solve_part2( test_input ).| )
+                        ( |cl_abap_unit_assert=>assert_equals( act = result exp = 0 ).| ) ) ).
 
   TRY.
       " TODO: variable is assigned but never used (ABAP cleaner)

@@ -15,8 +15,8 @@ CLASS lhc_day DEFINITION INHERITING FROM cl_abap_behavior_handler.
       RAISING   cx_xco_gen_put_exception.
 
     METHODS download_input
-      IMPORTING iv_year        TYPE numc4
-                iv_day         TYPE int1
+      IMPORTING iv_year        TYPE calendaryear
+                iv_day         TYPE calendarday
                 iv_auth_cookie TYPE zde_aoc_cookie
       RETURNING VALUE(result)  TYPE string
       RAISING   cx_web_http_client_error.
@@ -146,7 +146,7 @@ CLASS lhc_day IMPLEMENTATION.
   METHOD download_input.
     " HTTP Destination für adventofcode.com
 
-    FINAL(url) = |https://adventofcode.com/{ iv_year }/day/{ iv_day }/input|.
+    FINAL(url) = |https://adventofcode.com/{ iv_year }/day/{ conv i( iv_day ) }/input|.
     cl_http_client=>create_by_url( EXPORTING url    = url
                                    IMPORTING client = FINAL(client) ).
 

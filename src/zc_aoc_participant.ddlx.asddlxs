@@ -30,7 +30,7 @@ annotate view ZC_AOC_PARTICIPANT with
   @UI.lineItem: [ { position: 40, importance: #MEDIUM } ]
   CreatedBy;
 
-  @UI.hidden: true
+  @UI.identification: [ { position: 50 } ]
   AuthCookie;
 
   @UI.hidden: true

@@ -4,22 +4,33 @@ with draft;
 
 define behavior for ZR_AOC_PARTICIPANT alias Participant
 persistent table zaoc_participant
-draft table ZAOC_PARTICIPAND
+draft table zaoc_participand
 etag master LocalLastChangedAt
 lock master total etag LastChangedAt
-authorization master( global )
+authorization master ( global )
 
 {
   field ( readonly )
-   ParticipantUUID,
-   CreatedAt,
-   CreatedBy,
-   LastChangedAt,
-   LastChangedBy,
-   LocalLastChangedAt;
+  ParticipantUUID,
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChangedAt;
+
+  field ( readonly : update )
+  Fullyear,
+  GenPackage;
+
+  field ( mandatory : create )
+  Fullyear,
+  GenPackage;
+
+  field ( mandatory )
+  AuthCookie;
 
   field ( numbering : managed )
-   ParticipantUUID;
+  ParticipantUUID;
 
   association _Days { create; with draft; }
 
@@ -34,22 +45,22 @@ authorization master( global )
   draft action Resume;
   draft determine action Prepare;
 
-  mapping for ZAOC_PARTICIPANT
-  {
-    ParticipantUUID = participant_uuid;
-    Fullyear = fullyear;
-    ProblemsSolved = problems_solved;
-    AuthCookie = auth_cookie;
-    GenPackage = gen_package;
-    CreatedBy = created_by;
-    CreatedAt = created_at;
-    LastChangedBy = last_changed_by;
-    LastChangedAt = last_changed_at;
-    LocalLastChangedAt = local_last_changed_at;
-  }
+  mapping for zaoc_participant
+    {
+      ParticipantUUID    = participant_uuid;
+      Fullyear           = fullyear;
+      ProblemsSolved     = problems_solved;
+      AuthCookie         = auth_cookie;
+      GenPackage         = gen_package;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
 }
 
-define behavior for ZR_AOC_Day alias Day
+define behavior for ZR_AOC_DAY alias Day
 persistent table zaoc_day
 draft table zaoc_day_d
 etag master LocalLastChangedAt
@@ -80,18 +91,18 @@ authorization dependent by _Participant
   determination downloadPuzzleInput on save { create; }
 
   mapping for zaoc_day
-  {
-    DayUUID = day_uuid;
-    ParticipantUUID = participant_uuid;
-    DayNumber = day_number;
-    Part1Solved = part1_solved;
-    Part2Solved = part2_solved;
-    SolverClassName = solver_class_name;
-    TextID = text_id;
-    CreatedBy = created_by;
-    CreatedAt = created_at;
-    LastChangedBy = last_changed_by;
-    LastChangedAt = last_changed_at;
-    LocalLastChangedAt = local_last_changed_at;
-  }
+    {
+      DayUUID            = day_uuid;
+      ParticipantUUID    = participant_uuid;
+      DayNumber          = day_number;
+      Part1Solved        = part1_solved;
+      Part2Solved        = part2_solved;
+      SolverClassName    = solver_class_name;
+      TextID             = text_id;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
 }

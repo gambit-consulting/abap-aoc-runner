@@ -50,12 +50,12 @@ annotate view ZC_AOC_DAY with
   Part2Solved;
   
   @UI.lineItem: [ {
-    position: 40 , 
+    position: 50 , 
     importance: #MEDIUM, 
     label: 'Class'
   } ]
   @UI.identification: [ {
-    position: 40 , 
+    position: 50 , 
     label: 'Class'
   } ]
   SolverClassName;

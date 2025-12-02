@@ -11,7 +11,9 @@ define root view entity ZC_AOC_PARTICIPANT
 {
   key ParticipantUUID,
 
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'ZI_AOC_YEAR_VH', element: 'CalendarYear' } } ]
       Fullyear,
+
       ProblemsSolved,
       AuthCookie,
 
